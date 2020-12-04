@@ -1,18 +1,14 @@
 ---
-title: API Reference
+title: Relay Chat Documentation
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - shell
-  - ruby
-  - python
   - javascript
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a>
+  - <a href='/'>Back to main website</a>
 
-includes:
-  - errors
+# includes:
+#   - errors
 
 search: true
 
@@ -21,221 +17,60 @@ code_clipboard: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to Relay, the future of website communities! Relay adds live chat to any website with just a script tag. It creates a chatroom unique to each pathname on which the script tag is loaded. Everyone who visits that page will have access to the same live chat. Relay comes with threads, mentions, emoji reactions, admin tools, push notifications, and more. Best of all, it's completely free.
 
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+This documentation outlines how to add the Relay script tag to your website and explains how to become an admin and leverage our admin tools. If you run into any problems, feel free to click the Relay button in the bottom right to chat with us and other visitors of our documentation.
 
-This example API documentation page was created with [Slate](https://github.com/slatedocs/slate). Feel free to edit it and use it as a base for your own API's documentation.
+# Installation
 
-# Authentication
-
-> To authorize, use this code:
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here" \
-  -H "Authorization: meowmeowmeow"
-```
+> When you've added the Relay script tag, you can access the global relay object:
 
 ```javascript
-const kittn = require('kittn');
+typeof window.relay; // => "object"
 
-let api = kittn.authorize('meowmeowmeow');
-```
+// check if Relay has been initialized
+relay.initialized; // => true
 
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens" \
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2" \
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+// minimize Relay programmatically
+if (relay.minimized) {
+  relay.minimize();
 }
-```
 
-This endpoint retrieves a specific kitten.
-
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-
-### HTTP Request
-
-`GET http://example.com/kittens/<ID>`
-
-### URL Parameters
-
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
-
-## Delete a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2" \
-  -X DELETE \
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
-
-> The above command returns JSON structured like this:
-
-```json
-{
-  "id": 2,
-  "deleted" : ":("
+// unminimize Relay programmatically
+if (!relay.minimized) {
+  relay.unminimize();
 }
+
+// directly access Relay's button and container (an iframe)
+relay.button; // => button#relay-btn
+relay.container; // => iframe#relay-iframe
 ```
 
-This endpoint deletes a specific kitten.
+Add this script tag to the `head` of any pages where you'd like to enable Relay: `<script src="https://chat.relaychat.app"></script>`. Voila! You have your own chat community.
 
-### HTTP Request
+The Relay script tag adds a global object `relay` to your webpage. You can use it to programmatically minimize and expand Relay. Normally, the user would click the Relay button to open the chat. You may also check whether Relay has been initialized and can even access Relay's DOM elements.
 
-`DELETE http://example.com/kittens/<ID>`
+# Admin
 
-### URL Parameters
+## How to Become an Admin
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
+To become an admin of your website you simply need to:
 
+1. sign up for Relay (within the chat app itself) using an email with the same domain as your website;
+2. confirm your email.
+
+## Admin Tools
+
+After you've become an admin, you'll automatically see an admin option in your Relay nav. You'll also have the option to moderate any message within the standard chat interface.
+
+Within the admin page, we've collected a queue of messages to be moderated as well as a log of any moderation actions you or the automoderator have taken. The messages in your queue have been flagged by your users as inappropriate. We use an automoderator powered by artificial intelligence, but some unsuitable messages might still slip through. As a moderator, you may:
+
+1. delete a message;
+2. delete all messages by a given user;
+3. ban a user.
+
+All of these moderation actions are reversible from the moderation action log.
+
+In addition to moderation tools, you can pin a message to all of the chatrooms in your domain. You may update this message anytime.
+
+We're always building more admin tools, so if you have any special requests, please let us know at hello@relaychat.app or chat with us using Relay on this website.
