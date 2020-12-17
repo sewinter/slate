@@ -50,6 +50,18 @@ Add this script tag to the `head` of any pages where you'd like to enable Relay:
 
 The Relay script tag adds a global object `relay` to your webpage. You can use it to programmatically minimize and expand Relay. Normally, the user would click the Relay button to open the chat. You may also check whether Relay has been initialized and can even access Relay's DOM elements.
 
+# Overriding the Chat Channel's location
+
+By default, Relay creates a chatroom specific to each pathname (e.g., relaychat.app, relaychat.app/docs). In order to override the location of the chatroom, you can add a `path` query string value to the script tag. **This path must be a valid pathname. In other words, your domain + the value of path must be a valid URL.**
+
+```html
+<!-- for every page with this script tag, the chatroom will simply be relaychat.app -->
+<script src="https://chat.relaychat.app?path="></script>
+
+<!-- for every page with this script tag, the chatroom will be relaychat.app/isnt-this-chat-awesome -->
+<script src="https://chat.relaychat.app?path=/isnt-this-chat-awesome"></script>
+```
+
 # Admin
 
 ## How to Become an Admin
@@ -71,6 +83,9 @@ Within the admin page, we've collected a queue of messages to be moderated as we
 
 All of these moderation actions are reversible from the moderation action log.
 
-In addition to moderation tools, you can pin a message to all of the chatrooms in your domain. You may update this message anytime.
+In addition to moderation tools, you can:
+
+1. pin a message to all the chatrooms in your domain;
+2. change the background color of the Relay button.
 
 We're always building more admin tools, so if you have any special requests, please let us know at hello@relaychat.app or chat with us using Relay on this website.
