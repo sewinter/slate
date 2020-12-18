@@ -50,7 +50,7 @@ Add this script tag to the `head` of any pages where you'd like to enable Relay:
 
 The Relay script tag adds a global object `relay` to your webpage. You can use it to programmatically minimize and expand Relay. Normally, the user would click the Relay button to open the chat. You may also check whether Relay has been initialized and can even access Relay's DOM elements.
 
-# Overriding the Chat Channel's location
+# Overriding the Chat Channel's Location
 
 By default, Relay creates a chatroom specific to each pathname (e.g., relaychat.app, relaychat.app/docs). In order to override the location of the chatroom, you can add a `path` query string value to the script tag. **This path must be a valid pathname. In other words, your domain + the value of path must be a valid URL.**
 
