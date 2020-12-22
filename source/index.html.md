@@ -62,6 +62,21 @@ By default, Relay creates a chatroom specific to each pathname (e.g., relaychat.
 <script src="https://chat.relaychat.app?path=/isnt-this-chat-awesome"></script>
 ```
 
+# Other Configuration Options (Color and Position)
+
+By adding query string parameters to the script tag, you can change the color of the button as well as its position:
+
+- `button_color`: this value must be hexcode **without the #**;
+- `position`: this value must be `left` or `right` (the default).
+
+```html
+<!-- the button will be white -->
+<script src="https://chat.relaychat.app?button_color=ffffff"></script>
+
+<!-- the button and chat will be on the left-->
+<script src="https://chat.relaychat.app?position=left"></script>
+```
+
 # Admin
 
 ## How to Become an Admin
