@@ -67,7 +67,8 @@ By default, Relay creates a chatroom specific to each pathname (e.g., relaychat.
 By adding query string parameters to the script tag, you can change the color of the button as well as its position:
 
 - `button_color`: this value must be hexcode **without the #**;
-- `position`: this value must be `left` or `right` (the default).
+- `position`: this value must be `left` or `right` (the default);
+- `button_bottom`: this value must be a valid value for the CSS bottom property, e.g., `20px` or `10vh`.
 
 ```html
 <!-- the button will be white -->
@@ -75,6 +76,9 @@ By adding query string parameters to the script tag, you can change the color of
 
 <!-- the button and chat will be on the left-->
 <script src="https://chat.relaychat.app?position=left"></script>
+
+<!-- the button will be 50px up from the bottom and on the left-->
+<script src="https://chat.relaychat.app?position=left&button_bottom=50px"></script>
 ```
 
 # Admin
