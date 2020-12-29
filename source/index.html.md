@@ -31,6 +31,13 @@ typeof window.relay; // => "object"
 // check if Relay has been initialized
 relay.initialized; // => true
 
+// listen for the Relay initialization event
+if (!relay.initialized) {
+   window.addEventListener("relayInitialized", () =>
+    alert("Relay has been initialized");
+  );
+}
+
 // minimize Relay programmatically
 if (relay.minimized) {
   relay.minimize();
@@ -49,6 +56,22 @@ relay.container; // => iframe#relay-iframe
 Add this script tag to the `head` of any pages where you'd like to enable Relay: `<script src="https://chat.relaychat.app"></script>`. Voila! You have your own chat community.
 
 The Relay script tag adds a global object `relay` to your webpage. You can use it to programmatically minimize and expand Relay. Normally, the user would click the Relay button to open the chat. You may also check whether Relay has been initialized and can even access Relay's DOM elements.
+
+# Setting a Username
+
+Relay allows you to propose a username for every user on your site, so you can integrate with your existing authentication. Assuming that the username hasn't been taken and is valid (e.g., isn't 99 characters long), the user can sign up and start chatting with one click. To propose a username, use the `relay.setUsername` method.
+
+> To propose a username, use the `relay.setUsername` method.
+
+```javascript
+if (window.relay && window.relay.initialized) {
+  window.relay.setUsername("myCoolUser");
+} else {
+  window.addEventListener("relayInitialized", () =>
+    window.relay.setUsername("myCoolUser")
+  );
+}
+```
 
 # Overriding the Chat Channel's Location
 
